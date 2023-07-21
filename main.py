@@ -1,5 +1,3 @@
-import datetime
-from core.config import DATABASE_URL
 from fastapi import FastAPI
 
 from db.base import database
@@ -21,6 +19,4 @@ async def shutdown():
     await database.disconnect()
 
 if __name__ == "__main__":
-    # date = datetime.datetime.utcnow()
-    # print(date)
     uvicorn.run("main:app", port=8000, host="127.0.0.1", reload=True)
