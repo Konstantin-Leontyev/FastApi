@@ -10,10 +10,9 @@ router = APIRouter()
 
 
 @router.get("/", response_model=List[User])
-async def read_users(
-        users: UserRepository = Depends(get_users_repository),
-):
-    return await users.get_all()
+async def get_all_users(
+        users: UserRepository = Depends(get_users_repository)):
+    return await users.get_all_users()
 
 
 @router.post("/", response_model=User)
@@ -41,8 +40,4 @@ async def update_user(
 async def delete_user(
         telegram_id: int,
         users: UserRepository = Depends(get_users_repository)):
-    user = await users.get_user_by_telegram_id(telegram_id=telegram_id)
-    if user is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
-
-    return await users.delete(telegram_id=telegram_id)
+    return await users.delete_user_by_id(telegram_id=telegram_id)
