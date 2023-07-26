@@ -1,13 +1,15 @@
-import sqlalchemy
+from sqlalchemy import Table, Column, Integer, String, DateTime, Boolean
 from .base import metadata
 
-users = sqlalchemy.Table(
-    "users",
+users = Table(
+    'users',
     metadata,
-    sqlalchemy.Column("telegram_id", sqlalchemy.BIGINT, primary_key=True, unique=True),
-    sqlalchemy.Column("name", sqlalchemy.String, nullable=False, server_default="Alex"),
-    sqlalchemy.Column("description", sqlalchemy.String, nullable=True, server_default=None),
-    sqlalchemy.Column("active_until", sqlalchemy.DateTime, nullable=False),
-    sqlalchemy.Column("is_active", sqlalchemy.BOOLEAN, server_default='false'),
-    sqlalchemy.Column("is_admin", sqlalchemy.BOOLEAN, server_default='false')
+    Column('id', Integer, primary_key=True, unique=True),
+    Column('name', String, nullable=False),
+    Column('description', String, nullable=True, server_default=None),
+    # Column('creation_time', DateTime, nullable=False),
+    # Column('last_change', DateTime, nullable=True),
+    # Column('active_until', DateTime, nullable=True),
+    Column('is_active', Boolean, server_default=None),
+    Column('is_admin', Boolean, server_default=None)
 )

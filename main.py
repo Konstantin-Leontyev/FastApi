@@ -4,7 +4,7 @@ from db.base import database
 from endpoints import users, pairs
 import uvicorn
 
-app = FastAPI(title="Fastapi EXAMPLE")
+app = FastAPI(title="Demo Api")
 app.include_router(users.router, prefix="/users", tags=["users"])
 app.include_router(pairs.router, prefix="/pairs", tags=["pairs"])
 
